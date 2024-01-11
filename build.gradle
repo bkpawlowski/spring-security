@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group 'pl.decerto.rekrutacja.bpawlowski'
+version '1.0.0'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = [
+                    'src/main/java',
+            ]
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
+}
+
+dependencies {
+    implementation project(":utilities")
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.0.5'
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.0.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.0.5'
+    testImplementation group: 'org.apache.groovy', name: 'groovy', version: '4.0.11'
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.4-M1-groovy-4.0'
+    testImplementation group: 'org.spockframework', name: 'spock-spring', version: '2.4-M1-groovy-4.0'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: '5.4.0'
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: '5.4.0'
+}
+
+test {
+    useJUnitPlatform()
+}
